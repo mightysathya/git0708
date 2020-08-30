@@ -1,0 +1,82 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Trade Information</title>
+
+             <h1> NSE - Trade Information</h1>
+
+</head>
+<body>
+<table id="nseTradDetails" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>OI</th>
+                <th>Day High</th>
+                <th>Day Low</th>
+                <th>Level Break</th>
+                <th>LTP</th>
+                <th>LTP Change</th>
+                <th>OI Change</th>
+<!--                 <th>OI Interpretation</th>
+ -->                
+                
+            </tr>
+        </thead>
+        <tbody></tbody>
+        
+    </table>
+
+
+<!-- 
+<script src="https://code.jquery.com/jquery-3.5.1.js">
+</script>
+  
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js">
+</script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+ <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+<script>
+$(document).ready(function() {
+ var table = $("#nseTradDetails tbody");
+	$.ajax({
+			   url: "http://localhost:8080/NSE-TradeInformation/tradeDetails",
+ 
+			success: function(data) 
+             { 
+
+            	  alert(data);
+            	  $.each(data, function(a, b) {
+            		  table.append("<tr><td>"+b.date+"</td>"+
+                              "<td>" + b.dayHigh + "</td>" +
+                              "<td>" + b.dayLow + "</td>" +
+                              "<td>" + b.levelBreak + "</td>" +
+                              "<td>" + b.ltp + "</td>" +
+                              "<td>" + b.ltpChange + "</td>" +
+                              "<td>" + b.oiChange + "</td>" +
+                              "<td>" + b.oiInterpretation + "</td></tr>");             
+            		  
+            	  });
+                  $("#nseTradDetails").DataTable();
+
+             }
+
+				 
+		        	 
+           
+		 
+		        	
+						 });    
+						 						 
+
+								});
+</script>
+</body>
+
+</html>
